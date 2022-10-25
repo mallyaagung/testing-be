@@ -26,12 +26,12 @@ const multerUpload = multer({
   },
   limits: {
     files: 1,
-    fileSize: 1024 * 1024 * 3,
+    fileSize: 1024 * 1024 * 10,
   },
 });
 
 const upload = (req, res, next) => {
-  const multerSingle = multerUpload.single("photo");
+  const multerSingle = multerUpload.single("image");
   multerSingle(req, res, (err) => {
     if (err) {
       failed(res, {

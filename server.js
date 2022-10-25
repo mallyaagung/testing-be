@@ -7,18 +7,24 @@ const { failed } = require("./src/utils/createResponse");
 const creditCardRoute = require("./src/router/credit_card.route");
 const airlinesRoute = require("./src/router/airline.route");
 const productRoute = require("./src/router/product.route");
-const transactionRoute = require('./src/router/transactions.route')
-const destinationRoute = require('./src/router/destination.route')
+const transactionRoute = require("./src/router/transactions.route");
+const destinationRoute = require("./src/router/destination.route");
 
 // deklarasi express
 const app = express();
 
 app.use(helmet());
 app.use(xss());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use("/img", express.static("./public"));
 
 // root router
 app.get("/", (req, res) =>
